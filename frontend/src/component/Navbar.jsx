@@ -23,6 +23,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import { Link, useLocation } from 'react-router-dom'
 
 const products = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
@@ -37,14 +38,15 @@ const callsToAction = [
 ]
 
 export default function Navbar() {
+  const location = useLocation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <header className="bg-white">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+          <a href="/" className="-m-1.5 p-1.5">
+            <span className="sr-only">Anscom</span>
             <img
               alt=""
               src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
@@ -111,25 +113,47 @@ export default function Navbar() {
             */}
           </Popover>
           
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">
+          <Link
+            to="/"
+            className={`text-sm/6 font-semibold ${
+              location.pathname === '/' ? 'text-indigo-600' : 'text-gray-900'
+            }`}
+          >
             Home
-          </a>
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
+          </Link>
+
+          <Link
+            to="/product"
+            className={`text-sm/6 font-semibold ${
+              location.pathname === '/product' ? 'text-indigo-600' : 'text-gray-900'
+            }`}
+          >
             Product
-          </a>
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
-            About Us
-          </a>
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
+          </Link>
+          <Link
+            to="/about"
+            className={`text-sm/6 font-semibold ${
+              location.pathname === '/about' ? 'text-indigo-600' : 'text-gray-900'
+            }`}
+          >
+            About
+          </Link>
+         
+          <Link
+            to="/contact"
+            className={`text-sm/6 font-semibold ${
+              location.pathname === '/contact' ? 'text-indigo-600' : 'text-gray-900'
+            }`}
+          >
             Contact Us
-          </a>
+          </Link>
         </PopoverGroup>
         
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="font-semibold text-gray-900 mx-5">
+            <a href="/cart" className="font-semibold text-gray-900 mx-5">
             <AiOutlineShoppingCart className='text-2xl'/>
           </a>
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
+          <a href="/login" className="text-sm/6 font-semibold text-gray-900">
             Log in <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
@@ -138,7 +162,7 @@ export default function Navbar() {
         <div className="fixed inset-0 z-50" />
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Anscom</span>
               <img
                 alt=""
@@ -178,38 +202,44 @@ export default function Navbar() {
                   </DisclosurePanel>
                 </Disclosure>
                 */}
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                <Link
+                  to="/"
+                  className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold ${location.pathname === '/' ? 'text-indigo-600' : 'text-gray-900'} hover:bg-gray-50`}
                 >
                   Home
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                </Link>
+                <Link
+                  to="/product"
+                  className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold ${location.pathname === '/product' ? 'text-indigo-600' : 'text-gray-900'} hover:bg-gray-50`}
                 >
                   Product
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                </Link>
+                <Link
+                  to="/about"
+                  className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold ${location.pathname === '/about' ? 'text-indigo-600' : 'text-gray-900'} hover:bg-gray-50`}
                 >
-                  About Us
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  About
+                </Link>
+                <Link
+                  to="/contact"
+                  className={`-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold ${location.pathname === '/contact' ? 'text-indigo-600' : 'text-gray-900'} hover:bg-gray-50`}
                 >
                   Contact Us
-                </a>
+                </Link>
               </div>
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                <Link
+                  to="/cart"
+                  className={`-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold ${location.pathname === '/cart' ? 'text-indigo-600' : 'text-gray-900'} hover:bg-gray-50`}
                 >
-                  Log in
-                </a>
+                  <AiOutlineShoppingCart className='text-2xl'/>
+                </Link>
+                <Link
+                  to="/login"
+                  className={`-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold ${location.pathname === '/login' ? 'text-indigo-600' : 'text-gray-900'} hover:bg-gray-50`}
+                >
+                  Log In
+                </Link>
               </div>
             </div>
           </div>
