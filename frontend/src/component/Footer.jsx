@@ -9,10 +9,10 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-gray-900 text-lg mb-6">Pages</h3>
             <ul className="space-y-4">
-              <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">Home</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">Product</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">About Us</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">Contact Us</a></li>
+              <li><a href="/" className="text-gray-600 hover:text-gray-900 transition-colors">Home</a></li>
+              <li><a href="/product" className="text-gray-600 hover:text-gray-900 transition-colors">Product</a></li>
+              <li><a href="/about" className="text-gray-600 hover:text-gray-900 transition-colors">About Us</a></li>
+              <li><a href="/contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact Us</a></li>
             </ul>
           </div>
 
@@ -29,7 +29,7 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-gray-900 text-lg mb-6">Company</h3>
             <ul className="space-y-4">
-              <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">About uS</a></li>
+              <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">About Us</a></li>
               <li><a href="#" className="text-gray-600 hover:text-gray-900 transition-colors">Jobs</a></li>
             </ul>
           </div>
