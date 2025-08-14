@@ -14,6 +14,7 @@ import com.anscom.ecommerce.repository.UserRepository;
 import com.anscom.ecommerce.security.CustomUserDetails;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,6 +38,9 @@ public class UserServiceImpl implements UserService {
     private final RefreshTokenService refreshTokenService;
     private final EmailService emailService;
     private final RefreshTokenRepository refreshTokenRepository;
+
+    @Value("${app.frontend.url}")
+    private String frontendUrl;
 
     @Override
     public MessageResponse registerUser(SignUpRequest signUpRequest) {
@@ -98,7 +102,7 @@ public class UserServiceImpl implements UserService {
         user.setResetPasswordTokenExpiry(Instant.now().plus(15, ChronoUnit.MINUTES));
         userRepository.save(user);
 
-        String resetLink = "http://localhost:8080/authenticate/reset-password?token=" + token;
+        String resetLink = frontendUrl + "/authenticate/reset-password?token=" + token;
         String subject = "Reset your password";
         String body = "Click the following link to reset your password:\n" + resetLink;
         emailService.sendEmail(user.getEmail(), subject, body);

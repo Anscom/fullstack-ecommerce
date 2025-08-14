@@ -8,6 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -22,6 +23,9 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
 
     private final UserRepository userRepository; // Assuming you save users
     private final JwtUtils jwtUtils;
+
+    @Value("${app.frontend.url}")
+    private String frontendUrl;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
@@ -50,7 +54,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         String token = jwtUtils.generateTokenFromUsername(email);
 
         // Redirect to frontend with token as query param
-        String redirectUrl = "http://localhost:5173/oauth2/success?token=" + token;
+        String redirectUrl = frontendUrl + "/oauth2/success?token=" + token;
         response.sendRedirect(redirectUrl);
     }
 }
