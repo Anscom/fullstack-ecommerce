@@ -150,10 +150,14 @@ export default function Navbar() {
         </PopoverGroup>
         
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/cart" className="font-semibold text-gray-900 mx-5">
+            <a href="/cart" className={`font-semibold ${
+              location.pathname === '/cart' ? 'text-indigo-600' : 'text-gray-900'
+            } mx-5`}>
             <AiOutlineShoppingCart className='text-2xl'/>
           </a>
-          <a href="/login" className="text-sm/6 font-semibold text-gray-900">
+          <a href="/login" className={`text-sm/6 font-semibold ${
+              location.pathname === '/login' || location.pathname === '/signup' ? 'text-indigo-600' : 'text-gray-900'
+            }`}>
             Log in <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
