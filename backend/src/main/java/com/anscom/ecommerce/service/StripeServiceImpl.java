@@ -20,4 +20,9 @@ public class StripeServiceImpl implements StripeService {
 
         return PaymentIntent.create(params);
     }
+
+    @Override
+    public PaymentIntent retrievePaymentIntent(String paymentIntentId) throws StripeException {
+        return PaymentIntent.retrieve(paymentIntentId);
+    }
 }

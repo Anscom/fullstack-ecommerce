@@ -77,7 +77,13 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/cart/remove").authenticated() // Allow GET only
                         .requestMatchers(HttpMethod.DELETE, "/cart/clearCart").authenticated() // Allow GET only
                         .requestMatchers(HttpMethod.POST, "/cart/add").authenticated() // Allow GET only
+                        .requestMatchers(HttpMethod.GET, "/orders/allorders").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/orders/{id}/status").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/orders/create-order").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/orders/{id}").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/orders/user/{userId}").authenticated()
                         .requestMatchers(HttpMethod.POST, "/payment/create-payment").permitAll() // Allow GET only
+                        .requestMatchers(HttpMethod.POST, "/payment/confirm-order/{paymentIntentId}").permitAll() // Allow GET only
                         .anyRequest().authenticated())
                 .oauth2Login(oauth2 -> oauth2
                         .successHandler(customOAuth2SuccessHandler)
@@ -97,7 +103,8 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("https://a-ecommerce.anscom-dev.com");
+        // config.addAllowedOrigin("https://a-ecommerce.anscom-dev.com");
+        config.addAllowedOrigin("http://localhost:5173");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 
